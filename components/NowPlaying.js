@@ -22,10 +22,10 @@ export default function NowPlaying({
             />
           </div>
         </div>
-        <div className="song-info flex flex-col items-center mt-5">
-          <h1 className="title text-lg font-medium">{title || "朋友越多越快乐"}</h1>
-          <p className="author mt-1 text-gray-400">{artist || "李志"}</p>
-          <p className="album mt-1">{album || "未知"}</p>
+        <div className="song-info flex flex-col mt-5">
+          <h1 className="w-full text-center truncate title text-lg font-medium">{title || "朋友越多越快乐"}</h1>
+          <p className="w-full text-center truncate author mt-1 text-gray-400">{artist || "李志"}</p>
+          <p className="w-full text-center truncate album mt-1">{album || "未知"}</p>
         </div>
       </a>
       <div className="info absolute inset-x-0 text-center mt-1">
