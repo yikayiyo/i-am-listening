@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import NowPlaying from '../components/NowPlaying'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
@@ -11,24 +11,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='main bg-red-200 h-screen '>
-        <div className="album-wrapper mt-20 px-10 bg-green-200">
+      <main className='main max-w-lg mx-auto bg-neutral-600 shadow shadow-blue-500/40 hover:shadow-indigo-500/40'>
+        <div className="album-wrapper mt-20 px-10">
           <NowPlaying isPlaying={true} />
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
