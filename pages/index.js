@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>I'm listening</title>
-        <meta name="description" content="You can know what I'm listening here" />
+        <title>I'm listening to</title>
+        <meta name="description" content="You can know what I'm listening to here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
