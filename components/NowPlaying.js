@@ -12,13 +12,13 @@ export default function NowPlaying({
     <>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
         <div className="record-bottom w-60 h-60 bg-black mx-auto flex justify-center items-center rounded-full">
-          <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%] overflow-hidden">
+          <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%]">
             <Image
               alt={title || "朋友越多越快乐"}
               src={albumImageUrl || "/songIMG.webp"}
               width={160}
               height={160}
-              className={isPlaying ? "animate-record-effect" : ""}
+              className={isPlaying ? "animate-record-effect rounded-[50%]" : "rounded-[50%]"}
             />
           </div>
         </div>
