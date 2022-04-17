@@ -6,6 +6,10 @@ import fetcher from '../lib/fetcher';
 
 export default function Home() {
   const { data } = useSWR('/api/now-playing', fetcher, { refreshInterval: 1000 });
+  let albumImageUrl = "/songIMG.webp";
+  if (data && data.albumImageUrl) {
+    albumImageUrl = data.albumImageUrl;
+  }
   return (
     <div>
       <Head>
@@ -14,12 +18,14 @@ export default function Home() {
         <meta name="description" content="You can know what I'm listening to here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='main max-w-lg mx-auto bg-neutral-600 shadow shadow-blue-500/40 hover:shadow-indigo-500/40'>
-        <div className="album-wrapper mt-20 px-10">
+      <main className="main relative max-w-lg mx-5 sm:mx-auto rounded-3xl first-letter:shadow shadow-blue-500/40 hover:shadow-indigo-500/40">
+        <div className="album-wrapper mt-20 px-10 rounded-3xl backdrop-blur bg-black/60">
           <NowPlaying {...data} />
+        </div>
+        <div className="blur-layer w-full h-full rounded-3xl absolute -z-10 top-0 left-0" style={{ backgroundImage: `url(${albumImageUrl})` }}>
         </div>
       </main>
       <Footer />
-    </div>
+    </div >
   )
 }

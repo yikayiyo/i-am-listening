@@ -1,2 +1,2 @@
 This is a project inspired by some creative developers.
-It may be fun.
+It may be funny.

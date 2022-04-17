@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     title = data.item.name;
     artist = data.item.show.publisher;
     belongTo = data.item.show.name;
-    imageUrl = data.item.show.images[0].url;
+    imageUrl = data.item.images[0].url;
     itemUrl = data.item.external_urls.spotify;
   } else {
     isPlaying = data.is_playing;

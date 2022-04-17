@@ -13,10 +13,19 @@ module.exports = {
           '100%': {
             transform: 'rotate(360deg)'
           },
+        },
+        slide: {
+          "0%": {
+            'transform': "translate(0%)",
+          },
+          "100%": {
+            'transform': "translate(-50%)",
+          }
         }
       },
       animation: {
-        'record-effect': 'record 10s linear infinite',
+        'record-effect': 'record 30s linear infinite',
+        'slidein': "slide 30s linear infinite alternate"
       }
     },
   },
