@@ -14,6 +14,9 @@ export default function NowPlaying({
     let scrollWidth = scrollTitleRef.current.scrollWidth, clientWidth = scrollTitleRef.current.clientWidth;
     if (scrollWidth > clientWidth) {
       scrollTitleRef.current.classList.add('animate-slidein')
+      return () => {
+        scrollTitleRef.current.classList.remove('animate-slidein')
+      }
     }
   });
   return (

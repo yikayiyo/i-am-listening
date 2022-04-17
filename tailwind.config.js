@@ -16,16 +16,16 @@ module.exports = {
         },
         slide: {
           "0%": {
-            'transform': "translate(0%)",
+            'transform': "translate(10%)",
           },
           "100%": {
-            'transform': "translate(-50%)",
+            'transform': "translate(-150%)",
           }
         }
       },
       animation: {
         'record-effect': 'record 30s linear infinite',
-        'slidein': "slide 30s linear infinite alternate"
+        'slidein': "slide 10s linear infinite"
       }
     },
   },
