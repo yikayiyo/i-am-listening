@@ -13,9 +13,35 @@ export default function NowPlaying({
   useEffect(() => {
     let scrollWidth = scrollTitleRef.current.scrollWidth, clientWidth = scrollTitleRef.current.clientWidth;
     if (scrollWidth > clientWidth) {
-      scrollTitleRef.current.classList.add('animate-slidein')
+      // bad 1
+      // let interval = setInterval(() => {
+      //   scrollTitleRef.current.scrollLeft += 10;
+      //   if (scrollTitleRef.current.scrollLeft === scrollWidth - clientWidth) {
+      //     scrollTitleRef.current.scrollLeft = 0;
+      //   }
+      // }, 1000);
+      // return () => {
+      //   clearInterval(interval);
+      // }
+      // bad 2
+      // scrollTitleRef.current.scrollTo({
+      //   top: 0,
+      //   left: scrollWidth - clientWidth,
+      //   behavior: 'smooth'
+      // })
+      const swipeSpinning = [
+        { transform: 'translateX(0%)' },
+        { transform: `translateX(${clientWidth - scrollWidth - 5}px)` }
+      ];
+
+      const swipeTiming = {
+        duration: 10000,
+        iterations: Infinity,
+        direction: "alternate"
+      }
+      let swipeAnimation = scrollTitleRef.current.animate(swipeSpinning, swipeTiming);
       return () => {
-        scrollTitleRef.current.classList.remove('animate-slidein')
+        swipeAnimation.cancel()
       }
     }
   });
@@ -34,7 +60,7 @@ export default function NowPlaying({
           </div>
         </div>
         <div className="song-info flex flex-col mt-5">
-          <div className="w-full text-center title text-xl font-medium whitespace-nowrap overflow-hidden">
+          <div className="w-full text-center title text-xl font-medium whitespace-nowrap overflow-hidden scroll-smooth">
             <h1 ref={scrollTitleRef}>{title || "朋友越多越快乐"}</h1>
           </div>
           <p className="w-full text-center truncate author mt-1 text-gray-200">{artist || "李志"}</p>
