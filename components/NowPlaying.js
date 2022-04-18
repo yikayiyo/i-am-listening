@@ -45,6 +45,29 @@ export default function NowPlaying({
       }
     }
   });
+  useEffect(() => {
+    function handleResize() {
+      // when the windowsize changes, there should be a new animation.
+      // TODO: how to reuse logic
+      let scrollWidth = scrollTitleRef.current.scrollWidth, clientWidth = scrollTitleRef.current.clientWidth;
+      if (scrollWidth > clientWidth) {
+        const swipeSpinning = [
+          { transform: 'translateX(0%)' },
+          { transform: `translateX(${clientWidth - scrollWidth - 5}px)` }
+        ];
+        const swipeTiming = {
+          duration: 10000,
+          iterations: Infinity,
+          direction: "alternate"
+        }
+        let swipeAnimation = scrollTitleRef.current.animate(swipeSpinning, swipeTiming);
+        return () => {
+          swipeAnimation.cancel()
+        }
+      }
+    }
+    window.addEventListener('resize', handleResize)
+  });
   return (
     <>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
