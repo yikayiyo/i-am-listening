@@ -71,7 +71,7 @@ export default function NowPlaying({
   return (
     <>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
-        <div className="record-bottom w-60 h-60 bg-black mx-auto flex justify-center items-center rounded-full">
+        <div className="record-bottom w-60 h-60 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
           <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%]">
             <Image
               alt={title || "朋友越多越快乐"}
