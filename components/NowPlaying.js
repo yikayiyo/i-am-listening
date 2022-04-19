@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { debounce } from '../lib/lodash.custom.min.js'
 
 export default function NowPlaying({
   isPlaying,
@@ -10,30 +11,14 @@ export default function NowPlaying({
   title
 }) {
   const scrollTitleRef = useRef(null);
+  const [width, setWidth] = useState(0);
   useEffect(() => {
     let scrollWidth = scrollTitleRef.current.scrollWidth, clientWidth = scrollTitleRef.current.clientWidth;
     if (scrollWidth > clientWidth) {
-      // bad 1
-      // let interval = setInterval(() => {
-      //   scrollTitleRef.current.scrollLeft += 10;
-      //   if (scrollTitleRef.current.scrollLeft === scrollWidth - clientWidth) {
-      //     scrollTitleRef.current.scrollLeft = 0;
-      //   }
-      // }, 1000);
-      // return () => {
-      //   clearInterval(interval);
-      // }
-      // bad 2
-      // scrollTitleRef.current.scrollTo({
-      //   top: 0,
-      //   left: scrollWidth - clientWidth,
-      //   behavior: 'smooth'
-      // })
       const swipeSpinning = [
         { transform: 'translateX(0%)' },
-        { transform: `translateX(${clientWidth - scrollWidth - 5}px)` }
+        { transform: `translateX(${clientWidth - scrollWidth}px)` }
       ];
-
       const swipeTiming = {
         duration: 10000,
         iterations: Infinity,
@@ -47,27 +32,13 @@ export default function NowPlaying({
   });
   useEffect(() => {
     function handleResize() {
-      // when the windowsize changes, there should be a new animation.
-      // TODO: how to reuse logic
-      let scrollWidth = scrollTitleRef.current.scrollWidth, clientWidth = scrollTitleRef.current.clientWidth;
-      if (scrollWidth > clientWidth) {
-        const swipeSpinning = [
-          { transform: 'translateX(0%)' },
-          { transform: `translateX(${clientWidth - scrollWidth - 5}px)` }
-        ];
-        const swipeTiming = {
-          duration: 10000,
-          iterations: Infinity,
-          direction: "alternate"
-        }
-        let swipeAnimation = scrollTitleRef.current.animate(swipeSpinning, swipeTiming);
-        return () => {
-          swipeAnimation.cancel()
-        }
-      }
+      setWidth(scrollTitleRef.current.clientWidth);
     }
-    window.addEventListener('resize', handleResize)
-  });
+    window.addEventListener('resize', debounce(handleResize, 500));
+    return () => {
+      window.removeEventListener('resize', debounce(handleResize, 500));
+    }
+  }, [width]);
   return (
     <>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>

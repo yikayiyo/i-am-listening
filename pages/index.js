@@ -1,8 +1,14 @@
 import useSWR from 'swr';
 import Head from 'next/head'
-import NowPlaying from '../components/NowPlaying'
 import Footer from '../components/Footer'
 import fetcher from '../lib/fetcher';
+
+import dynamic from 'next/dynamic'
+
+const NowPlaying = dynamic(
+  () => import('../components/NowPlaying'),
+  { ssr: false }
+)
 
 export default function Home() {
   const { data } = useSWR('/api/now-playing', fetcher, { refreshInterval: 1000 });
