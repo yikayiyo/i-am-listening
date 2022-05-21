@@ -1,6 +1,6 @@
 import Image from 'next/image'
 export default function Footer() {
-  return <footer className="p-5 fixed left-0 right-0 bottom-0">
+  return <footer className="p-5 bg-white">
     <div className="flex justify-center items-center">
       <p>
         Powered By

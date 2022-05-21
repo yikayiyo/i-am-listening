@@ -12,6 +12,7 @@ const NowPlaying = dynamic(
 
 export default function Home() {
   const { data } = useSWR('/api/now-playing', fetcher, { refreshInterval: 1000 });
+  const tracks = useSWR('/api/top-tracks', fetcher);
   let albumImageUrl = "/songIMG.webp";
   if (data && data.albumImageUrl) {
     albumImageUrl = data.albumImageUrl;
@@ -31,6 +32,22 @@ export default function Home() {
         <div className="blur-layer w-full h-full rounded-3xl absolute -z-10 top-0 left-0" style={{ backgroundImage: `url(${albumImageUrl})` }}>
         </div>
       </main>
+      {
+        tracks && tracks?.data?.tracks &&
+        < section className='top-tracks max-w-lg mt-10 mx-5 sm:mx-auto text-xl text-gray-500'>
+          <h2 className='pb-2'>最近在听</h2>
+          {
+            tracks.data.tracks.map(track => {
+              return (
+                <div key={track.id} className="flex justify-between  py-2 border-b-2 border-opacity-10">
+                  <span className='text-lg'>{track.name}</span>
+                  <span className=''>{track.artist}</span>
+                </div>
+              );
+            })
+          }
+        </section>
+      }
       <Footer />
     </div >
   )
