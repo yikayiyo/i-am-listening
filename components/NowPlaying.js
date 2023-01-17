@@ -64,7 +64,7 @@ export default function NowPlaying({
       <div className="info absolute inset-x-0 text-center mt-1">
         {
           isPlaying ? (
-            <p className='text-green-600'>正在收听🎵</p>
+            <p className='text-green-700'>正在收听🎵</p>
           ) : (
             songUrl ? (
               <p className='text-green-400'>休息中🙉</p>

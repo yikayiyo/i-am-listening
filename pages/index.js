@@ -25,7 +25,7 @@ export default function Home() {
         <meta name="description" content="You can know what I'm listening to here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="main relative max-w-lg mx-5 sm:mx-auto rounded-3xl first-letter:shadow shadow-blue-500/40 hover:shadow-indigo-500/40">
+      <main className="main relative min-w-[20rem] max-w-lg mx-5 sm:mx-auto rounded-3xl first-letter:shadow shadow-blue-500/40 hover:shadow-indigo-500/40">
         <div className="album-wrapper mt-20 px-10 rounded-3xl backdrop-blur bg-black/60">
           <NowPlaying {...data} />
         </div>
@@ -34,7 +34,7 @@ export default function Home() {
       </main>
       {
         tracks && tracks?.data?.tracks &&
-        < section className='top-tracks max-w-lg mt-10 mx-5 sm:mx-auto text-xl text-gray-500'>
+        < section className='top-tracks min-w-[20rem] max-w-lg mt-10 mx-5 sm:mx-auto text-xl text-gray-500'>
           <h2 className='pb-2'>最近在听</h2>
           {
             tracks.data.tracks.map(track => {
