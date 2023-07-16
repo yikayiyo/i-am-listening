@@ -42,7 +42,7 @@ export default function NowPlaying({
   return (
     <>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
-        <div className="record-bottom w-60 h-60 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
+        <div className="record-bottom w-60 h-60 md:w-80 md:h-80 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
           <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%]">
             <Image
               alt={title || "朋友越多越快乐"}
@@ -61,15 +61,15 @@ export default function NowPlaying({
           <p className="w-full text-center truncate album mt-1">{album || "未知"}</p>
         </div>
       </a>
-      <div className="info absolute inset-x-0 text-center mt-1">
+      <div className="info absolute inset-x-0 text-center mt-1 backdrop-blur bg-black/50">
         {
           isPlaying ? (
-            <p className='text-green-700'>正在收听🎵</p>
+            <p className='text-green-200'>正在收听🎵</p>
           ) : (
             songUrl ? (
-              <p className='text-green-400'>休息中🙉</p>
+              <p className='text-green-100'>休息中🙉</p>
             ) : (
-              <p className='text-gray-400'>不在线🙈</p>
+              <p className='text-gray-200'>不在线🙈</p>
             )
           )
         }

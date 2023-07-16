@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       track.id = item.id;
       track.name = item.name;
       track.artist = item.artists[0].name;
+      track.link = "https://open.spotify.com/track/"+item.id || "";
       tracks.push(track);
     })
   }
