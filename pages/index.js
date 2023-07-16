@@ -35,18 +35,18 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-      <main className='main md:grid md:grid-cols-2'>
-        <section className='current-playing relative p-10 mx-5 sm:mx-auto rounded-3xl first-letter:shadow shadow-blue-500/40 hover:shadow-indigo-500/40'>
-          <div className='album-wrapper md:px-10 rounded-3xl backdrop-blur bg-black/60'>
+      <main className='main md:grid md:grid-cols-[35%,35%] justify-center'>
+        <section className='current-playing relative md:px-10 m-5 mt-10 sm:mx-auto rounded-3xl first-letter:shadow shadow-blue-500/40 hover:shadow-indigo-500/40'>
+          <div className='album-wrapper md:h-full md:px-10 rounded-3xl backdrop-blur bg-black/60'>
             <NowPlaying {...data} />
           </div>
           <div
-            className='blur-layer w-full h-full fixed -z-10 inset-0 bg-origin-content bg-cover bg-no-repeat'
+            className='blur-layer w-full h-full fixed -z-10 inset-0 bg-center bg-cover bg-no-repeat bg-black/20'
             style={{ backgroundImage: `url(${albumImageUrl})` }}
           ></div>
         </section>
         {tracks && tracks?.data?.tracks && (
-          <section className='top-tracks relative min-w-[20rem] max-w-lg md:overflow-auto mt-10 mx-5 pb-10 rounded sm:mx-auto text-white text-xl backdrop-blur bg-black/60'>
+          <section className='top-tracks relative min-w-[20rem] max-w-lg md:overflow-auto m-5 mt-10 pb-10 rounded sm:mx-auto text-white text-xl backdrop-blur bg-black/60'>
             <h2 className='pl-10 py-5 pr-6 sticky top-0 backdrop-blur bg-black/90'>最近在听</h2>
             <div className="tracks-wrapper px-10 pr-6 md:max-h-[60vh]">
               {tracks.data.tracks.map((track) => {

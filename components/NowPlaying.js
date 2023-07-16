@@ -61,7 +61,7 @@ export default function NowPlaying({
           <p className="w-full text-center truncate album mt-1">{album || "未知"}</p>
         </div>
       </a>
-      <div className="info absolute inset-x-0 text-center mt-1 backdrop-blur bg-black/50">
+      <div className="info absolute p-1 top-0 right-0 text-center">
         {
           isPlaying ? (
             <p className='text-green-200'>正在收听🎵</p>
