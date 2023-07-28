@@ -41,7 +41,7 @@ export default function NowPlaying({
   }, [width]);
   const albumWrapperStyle = isPlaying ? 'shadow-[03px_02px_302px_0px_#dfa]': '';
   return (
-    <div className={'album-wrapper md:h-full px-10 rounded-3xl backdrop-blur bg-black/90 ' + albumWrapperStyle}>
+    <div className={'album-wrapper md:h-full px-10 rounded-xl backdrop-blur bg-black/90 ' + albumWrapperStyle}>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
         <div className="record-bottom w-60 h-60 md:w-80 md:h-80 md:px-10 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
           <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%]">

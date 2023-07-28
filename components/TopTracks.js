@@ -20,11 +20,11 @@ export default function TopTracks({ tracks }) {
     tracksEl = '暂无数据'
   }
   return (
-    <section className='top-tracks relative md:w-[400px] lg:overflow-auto m-5 mt-10 md:mb-32 lg:mb-0 rounded sm:mx-auto text-white text-xl backdrop-blur bg-black/80'>
+    <section className='top-tracks relative md:w-[400px] m-5 mt-10 md:mb-32 lg:mb-0 rounded-xl overflow-hidden sm:mx-auto text-white text-xl backdrop-blur bg-black/80'>
       <h2 className='pl-10 py-5 pr-6 sticky top-0 backdrop-blur bg-black/90'>
         最近在听
       </h2>
-      <div className='tracks-wrapper scroll-smooth p-4 lg:px-10 lg:pr-6 lg:max-h-[60vh]'>
+      <div className='tracks-wrapper scroll-smooth px-4 py-2 lg:max-h-[56vh] lg:overflow-auto'>
         {tracksEl}
       </div>
     </section>
