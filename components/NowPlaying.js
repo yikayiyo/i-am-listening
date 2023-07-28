@@ -39,10 +39,11 @@ export default function NowPlaying({
       window.removeEventListener('resize', debounce(handleResize, 500));
     }
   }, [width]);
+  const albumWrapperStyle = isPlaying ? 'shadow-[03px_02px_302px_0px_#dfa]': '';
   return (
-    <>
+    <div className={'album-wrapper md:h-full px-10 rounded-3xl backdrop-blur bg-black/90 ' + albumWrapperStyle}>
       <a className="wrapper py-10 text-white block" href={songUrl || "#"}>
-        <div className="record-bottom w-60 h-60 md:w-80 md:h-80 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
+        <div className="record-bottom w-60 h-60 md:w-80 md:h-80 md:px-10 bg-black shadow-white shadow-[0_0_32px_0_rgba(0,0,0,0.3)] mx-auto flex justify-center items-center rounded-full">
           <div className="song-image-wrapper w-40 h-40 bg-gray-200 rounded-[50%]">
             <Image
               alt={title || "朋友越多越快乐"}
@@ -53,15 +54,15 @@ export default function NowPlaying({
             />
           </div>
         </div>
-        <div className="song-info flex flex-col mt-5">
-          <div className="w-full text-center title text-xl font-medium whitespace-nowrap overflow-hidden scroll-smooth">
+        <div className="song-info flex flex-col mt-5 mx-4">
+          <div className="w-full md:w-72 text-center title text-xl font-medium whitespace-nowrap overflow-hidden scroll-smooth">
             <h1 ref={scrollTitleRef}>{title || "朋友越多越快乐"}</h1>
           </div>
           <p className="w-full text-center truncate author mt-1 text-gray-200">{artist || "李志"}</p>
           <p className="w-full text-center truncate album mt-1">{album || "未知"}</p>
         </div>
       </a>
-      <div className="info absolute p-1 top-0 right-0 text-center">
+      <div className="info absolute p-1 top-1 right-4 text-center">
         {
           isPlaying ? (
             <p className='text-green-200'>正在收听🎵</p>
@@ -74,6 +75,6 @@ export default function NowPlaying({
           )
         }
       </div>
-    </>
+    </div>
   )
 }
