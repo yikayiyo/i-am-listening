@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <div>
+    <div className='app lg-p-10'>
       <Head>
         <title>I'm listening to</title>
         <meta
