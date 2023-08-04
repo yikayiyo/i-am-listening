@@ -25,7 +25,7 @@ module.exports = {
       },
       animation: {
         'record-effect': 'record 30s linear infinite',
-        'slidein': "slide 200ms linear"
+        'slidein': "slide 200ms ease-in"
       },
       perspective: {
         'none': 'none',

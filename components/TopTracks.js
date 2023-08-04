@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
 import { useRef } from 'react'
+import { isMobile } from '../lib/utils'
 
 function TrackItem({ track }) {
   // animation when page loads
@@ -18,13 +19,12 @@ function TrackItem({ track }) {
   // animation when user scrolls, for mobile users
   const itemRef = useRef(null)
   const isInView = useInView(itemRef, {once: true})
-  
   return (
     <motion.div
       ref={itemRef}
       variants={itemVariants}
       whileHover={{ color: '#dfa', scale: 1.01 }}
-      className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${isInView ? 'animate-slidein' : ''}`}
+      className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${(isMobile() && isInView) ? 'animate-slidein' : ''}`}
       data-link={track.link}
       onClick={() => {
         window.open(track.link, '_blank')
