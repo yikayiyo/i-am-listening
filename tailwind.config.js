@@ -16,17 +16,25 @@ module.exports = {
         },
         slide: {
           "0%": {
-            'transform': "translate(10%)",
+            'transform': "translateX(10%)",
           },
           "100%": {
-            'transform': "translate(-150%)",
+            'transform': "translateX(0%)",
           }
         }
       },
       animation: {
         'record-effect': 'record 30s linear infinite',
-        'slidein': "slide 10s linear infinite"
-      }
+        'slidein': "slide 200ms ease-in"
+      },
+      perspective: {
+        'none': 'none',
+        '2': '200px',
+        'sm': '500px',
+        'md': '1000px',
+        'lg': '2000px',
+        'xl': '3000px',
+      },
     },
   },
   plugins: [],
