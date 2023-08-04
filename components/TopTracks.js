@@ -1,23 +1,65 @@
-export default function TopTracks({ tracks }) {
-  let tracksEl
-  if (tracks && tracks?.data?.tracks) {
-    tracksEl = tracks.data.tracks.map((track) => {
-      return (
-        <div
-          key={track.id}
-          className='flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer'
-          data-link={track.link}
-          onClick={() => {
-            window.open(track.link, '_blank')
-          }}
-        >
-          <span className='text-base max-w-[80%]'>{track.name}</span>
-          <span className='text-base flex-shrink-0'>{track.artist}</span>
-        </div>
-      )
-    })
-  } else {
-    tracksEl = (
+import { motion, useInView } from 'framer-motion'
+import useSWR from 'swr'
+import fetcher from '../lib/fetcher'
+import { useRef } from 'react'
+
+function TrackItem({ track }) {
+  // animation when page loads
+  const itemVariants = {
+    hidden: {
+      x: 50,
+      opacity: 0
+    },
+    done: {
+      x: 0,
+      opacity: 1
+    }
+  }
+  // animation when user scrolls, for mobile users
+  const itemRef = useRef(null)
+  const isInView = useInView(itemRef, {once: true})
+  
+  return (
+    <motion.div
+      ref={itemRef}
+      variants={itemVariants}
+      whileHover={{ color: '#dfa', scale: 1.01 }}
+      className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${isInView ? 'animate-slidein' : ''}`}
+      data-link={track.link}
+      onClick={() => {
+        window.open(track.link, '_blank')
+      }}
+    >
+      <span className='text-base max-w-[80%]'>{track.name}</span>
+      <span className='text-base flex-shrink-0'>{track.artist}</span>
+    </motion.div>
+  )
+}
+
+export default function TopTracks() {
+  const containerVariants = {
+    hidden: {
+      transition: {
+        staggerChildren: 0.07
+      }
+    },
+    done: {
+      transition: {
+        staggerChildren: 0.07
+      }
+    }
+  }
+
+  const {
+    data: tracks,
+    error,
+    isValidating
+  } = useSWR('/api/top-tracks', fetcher)
+  let trackEl
+  if (error) {
+    trackEl = <div onClick={location.reload()}>Refresh</div>
+  } else if (isValidating) {
+    trackEl = (
       <div
         role='status'
         className='absolute inset-0 grid items-center justify-center'
@@ -41,15 +83,30 @@ export default function TopTracks({ tracks }) {
         <span className='sr-only'>Loading...</span>
       </div>
     )
+  } else {
+    trackEl = (
+      <motion.div
+        variants={containerVariants}
+        initial='hidden'
+        animate='done'
+        className='tracks-wrapper px-4 py-2 lg:overflow-auto lg:absolute lg:inset-0 lg:top-[68px]'
+      >
+        {tracks.tracks.map((track) => (
+          <TrackItem
+            track={track}
+            key={track.id}
+          />
+        ))}
+      </motion.div>
+    )
   }
+
   return (
     <section className='top-tracks relative my-5 md:mb-32 lg:my-0 rounded-xl overflow-hidden text-white text-xl backdrop-blur bg-black/80'>
       <h2 className='pl-10 py-5 pr-6 sticky top-0 backdrop-blur bg-black/90'>
         最近在听
       </h2>
-      <div className='tracks-wrapper scroll-smooth px-4 py-2 lg:overflow-auto lg:absolute lg:inset-0 lg:top-[68px]'>
-        {tracksEl}
-      </div>
+      {trackEl}
     </section>
   )
 }
