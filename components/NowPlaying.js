@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import { debounce } from '../lib/lodash.custom.min.js'
-import {
-  useAnimationFrame
-} from 'framer-motion'
+import { useAnimationFrame } from 'framer-motion'
 
 export default function NowPlaying({
   isPlaying,
@@ -53,7 +51,7 @@ export default function NowPlaying({
   const albumRef = useRef(null)
   useAnimationFrame((t) => {
     if (isPlaying) {
-      const rotateX = Math.sin(t / 943.2) * 9.432
+      const rotateX = 0
       const rotateY = Math.cos(t / 943.2) * 9.432
       const rotateZ = Math.sin(t / 943.2) * 0.9432
       albumRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`

@@ -15,17 +15,25 @@ export default function MainContent() {
     refreshInterval: 1000
   })
   let albumImageUrl = '/songIMG.webp'
-  if (data && data.albumImageUrl) {
+  let bgPointColor = '#0003'
+  if (data?.albumImageUrl) {
     albumImageUrl = data.albumImageUrl
   }
-  return <main className='main mt-10 px-4 grid grid-cols-1 lg:grid-cols-[35%,35%,0] gap-10 justify-center'>
-    <section className='current-playing perspective-lg relative lg:mb-0 rounded-3xl'>
-      <NowPlaying {...data} />
-      <div
-        className='blur-layer w-full h-full fixed -z-10 inset-0 bg-center bg-cover bg-no-repeat bg-black/20'
-        style={{ backgroundImage: `url(${albumImageUrl})` }}
-      ></div>
-    </section>
-    <TopTracks/>
-  </main>
+  if (data?.isPlaying) {
+    bgPointColor = 'blue'
+  }
+  return (
+    <main className='main mt-10 px-4 grid grid-cols-1 lg:grid-cols-[35%,35%,0] gap-10 justify-center'>
+      <section className='current-playing perspective-lg relative lg:mb-0 rounded-3xl'>
+        <NowPlaying {...data} />
+        <div
+          className='blur-layer w-full h-full fixed -z-10 inset-0 bg-center bg-cover'
+          style={{
+            background: `fixed 0 0/32px 32px radial-gradient(${bgPointColor} 1px,transparent 0), fixed 16px 16px /32px 32px radial-gradient(${bgPointColor} 1px,transparent 0)`
+          }}
+        ></div>
+      </section>
+      <TopTracks />
+    </main>
+  )
 }
