@@ -23,7 +23,7 @@ export default function MainContent() {
     bgPointColor = 'blue'
   }
   return (
-    <main className='main mt-10 px-4 grid grid-cols-1 lg:grid-cols-[35%,35%,0] gap-10 justify-center'>
+    <main className='main min-h-screen lg:min-h-[initial] mt-10 px-4 grid grid-cols-1 lg:grid-cols-[35%,35%,0] gap-10 justify-center'>
       <section className='current-playing perspective-lg relative lg:mb-0 rounded-3xl'>
         <NowPlaying {...data} />
         <div
