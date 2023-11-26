@@ -2,7 +2,6 @@ import { getNowPlaying } from '../../lib/spotify'
 
 export default async function handler(req, res) {
   const response = await getNowPlaying()
-  console.log('res:', response)
   if (response.status === 204 || response.status > 400) {
     return res.status(200).json({ isPlaying: false })
   }
@@ -17,6 +16,7 @@ export default async function handler(req, res) {
   let belongTo = ''
   let imageUrl = ''
   let itemUrl = ''
+  let descrition = ''
   // data type
   res.setHeader(
     'Cache-Control',
@@ -29,6 +29,7 @@ export default async function handler(req, res) {
     belongTo = data.item.show.name
     imageUrl = data.item.images[0].url
     itemUrl = data.item.external_urls.spotify
+    descrition = data.item.description
   } else {
     isPlaying = data.is_playing
     title = data.item.name
@@ -36,6 +37,7 @@ export default async function handler(req, res) {
     belongTo = data.item.album.name
     imageUrl = data.item.album.images[0].url
     itemUrl = data.item.external_urls.spotify
+    descrition = data.item.name
   }
   return res.status(200).json({
     album: belongTo,
@@ -43,6 +45,7 @@ export default async function handler(req, res) {
     artist,
     isPlaying,
     songUrl: itemUrl,
-    title
+    title,
+    descrition
   })
 }

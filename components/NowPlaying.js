@@ -9,7 +9,8 @@ export default function NowPlaying({
   albumImageUrl,
   artist,
   songUrl,
-  title
+  title,
+  descrition
 }) {
   const scrollTitleRef = useRef(null)
   const [width, setWidth] = useState(0)
@@ -70,6 +71,7 @@ export default function NowPlaying({
         'album-wrapper md:h-full px-10 rounded-xl backdrop-blur bg-black/90 ' +
         albumWrapperStyle
       }
+      title={descrition}
     >
       <a
         className='wrapper py-10 text-white block'

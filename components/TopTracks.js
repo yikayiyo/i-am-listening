@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
 import { useRef } from 'react'
@@ -18,13 +18,21 @@ function TrackItem({ track }) {
   }
   // animation when user scrolls, for mobile users
   const itemRef = useRef(null)
-  const isInView = useInView(itemRef, {once: true})
+  const isInView = useInView(itemRef, { once: true })
+  // animation when hover
+  const hoverControl = useAnimation()
   return (
     <motion.div
       ref={itemRef}
       variants={itemVariants}
-      whileHover={{ color: '#dfa', scale: 1.01 }}
-      className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${(isMobile() && isInView) ? 'animate-slidein' : ''}`}
+      animate={hoverControl}
+      onHoverStart={() =>
+        hoverControl.start({ x: 10, scale: 1.02, color: '#dfa' })
+      }
+      onHoverEnd={() => hoverControl.start({ x: 0, scale: 1, color: 'white' })}
+      className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${
+        isMobile() && isInView ? 'animate-slidein' : ''
+      }`}
       data-link={track.link}
       onClick={() => {
         window.open(track.link, '_blank')
