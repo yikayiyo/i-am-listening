@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
-import { debounce } from '../lib/lodash.custom.min.js'
 import { useAnimationFrame } from 'framer-motion'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+import { debounce } from '../lib/lodash.custom.min.js'
 
 export default function NowPlaying({
   isPlaying,
@@ -89,6 +89,7 @@ export default function NowPlaying({
                   ? 'animate-record-effect rounded-[50%]'
                   : 'rounded-[50%]'
               }
+              priority={true}
             />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
-import { useRef } from 'react'
 import { isMobile } from '../lib/utils'
 
 function TrackItem({ track }) {
@@ -29,7 +29,7 @@ function TrackItem({ track }) {
       onHoverStart={() =>
         hoverControl.start({ x: 10, scale: 1.02, color: '#dfa' })
       }
-      onHoverEnd={() => hoverControl.start({ x: 0, scale: 1, color: 'white' })}
+      onHoverEnd={() => hoverControl.start({ x: 0, scale: 1, color: '#fff' })}
       className={`track-item flex justify-between items-center py-2 border-b border-b-zinc-900 cursor-pointer ${
         isMobile() && isInView ? 'animate-slidein' : ''
       }`}
