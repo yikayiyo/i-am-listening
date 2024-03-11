@@ -52,10 +52,9 @@ export default function NowPlaying({
   const albumRef = useRef(null)
   useAnimationFrame((t) => {
     if (isPlaying) {
-      const rotateX = 0
+      const rotateX = Math.sin(t / 943.2) * 9.432
       const rotateY = Math.cos(t / 943.2) * 9.432
-      const rotateZ = Math.sin(t / 943.2) * 0.9432
-      albumRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
+      albumRef.current.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`
     } else {
       albumRef.current.style.transform = `none`
     }
